@@ -1,0 +1,64 @@
+{% extends 'crud/base.html' %} {% block body %}
+<form class="form-inline" action="create" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" name="firstname" class="form-control" placeholder="Enter Firstname" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" class="form-control" placeholder="Enter Lastname" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="current_GPA">Current GPA</label>
+        <input type="text" name="current_GPA" class="form-control" placeholder="Enter Current GPA" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="RegNo">Registration Number</label>
+        <input type="text" name="RegNo" class="form-control" placeholder="Enter Registration Number" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="course ">Course</label>
+        <input type="text" name="course" class="form-control" placeholder="Enter Your Course" required=" required " />
+    </div>
+
+
+    <button type="submit " class="btn btn-sm btn-success ">CREATE</button>
+</form>
+
+<br/>
+<table class="table table-bordered ">
+    <thead class="alert-info ">
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Course</th>
+            <th>Registration Number</th>
+            <th>Current GPA</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.firstname }}</td>
+            <td>{{ member.lastname }}</td>
+            <td>{{ member.course }}</td>
+            <td>{{ member.RegNo }}</td>
+            <td>{{ member.current_GPA }}</td>
+
+            <td>
+                <center><a class="btn btn-sm btn-warning " href="edit/{{ member.id }} ">UPDATE</a>
+                    <a class="btn btn-sm btn-danger " href="delete/{{ member.id }} "> DELETE</a>
+                </center>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
